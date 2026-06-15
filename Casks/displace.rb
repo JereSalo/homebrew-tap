@@ -1,6 +1,6 @@
 cask "displace" do
-  version "1.1.0"
-  sha256 "737536348763e17147f303cf991e621a03b1ef6ec81bfe74811a8d370f2e8b4b"
+  version "1.2.0"
+  sha256 "9bd4954ca87209ebf2fd76e8a2ec0d3e02fd81cd788e258fb5a71b3b183dc29d"
 
   url "https://api.displaceapp.com/download/#{version}",
       verified: "api.displaceapp.com/"
