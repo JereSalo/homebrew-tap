@@ -1,6 +1,6 @@
 # homebrew-tap
 
-Homebrew tap for [Displace](https://displaceapp.com), a macOS menu bar app for custom multi-display cursor transitions.
+Homebrew tap for [Displace](https://displaceapp.com), a macOS app that lets you arrange your displays freely and control how the cursor moves between them.
 
 ## Install
 
