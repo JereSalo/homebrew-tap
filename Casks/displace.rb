@@ -22,10 +22,21 @@ cask "displace" do
   # SMAppService login item and helper, so a plain delete would leave a ghost
   # login item behind. It also restores displays, frees the license slot, and
   # removes settings/logs. The zap below is a backstop.
+  #
+  # Invoked through /bin/sh (which always exists) instead of pointing
+  # `executable:` straight at the app binary. Homebrew hard-errors an uninstall
+  # when an absolute `executable:` is missing, which would wedge `brew upgrade`/
+  # `uninstall` for anyone whose Displace.app was already deleted or moved. The
+  # guard runs the uninstaller only when the binary is present and swallows a
+  # non-zero exit, so a missing or failing app degrades to a no-op.
   uninstall quit:   "com.jeresalo.Displace",
             script: {
-              executable: "#{appdir}/Displace.app/Contents/MacOS/Displace",
-              args:       ["--uninstall"],
+              executable: "/bin/sh",
+              args:       [
+                "-c",
+                "bin=\"#{appdir}/Displace.app/Contents/MacOS/Displace\"; " \
+                "[ -x \"$bin\" ] && \"$bin\" --uninstall || true",
+              ],
               sudo:       false,
             }
 
